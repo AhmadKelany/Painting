@@ -27,7 +27,7 @@ namespace Painting
             decimal radius = decimal.Parse(txtRadius.Text);
             decimal distance = decimal.Parse(txtDistance.Text);
 
-            Pen p = new Pen(LinesColor,1);
+            Pen p = new Pen(LinesColor,(int)numericUpDown1.Value);
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics g = Graphics.FromImage(bitmap);
             g.FillRectangle(new SolidBrush(BackColor), 0, 0, pictureBox1.Width, pictureBox1.Height);
