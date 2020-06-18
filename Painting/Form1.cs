@@ -42,7 +42,7 @@ namespace Painting
                     g.DrawEllipse(p, w, h,  (int)radius,  (int)radius);
                 }
             }
-            string path = @$"d:\{DateTime.Now.ToString("yyyy-MM-dd hh-mm tt")}.jpeg";
+            string path = @$"d:\{DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss tt")}.jpeg";
             bitmap.Save(path, ImageFormat.Jpeg);
         }
 
