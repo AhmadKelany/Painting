@@ -34,6 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtDistance = new System.Windows.Forms.TextBox();
             this.lblMakePainting = new System.Windows.Forms.Label();
+            this.lblBackColor = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.lblLinesColor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,11 +100,35 @@
             this.lblMakePainting.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMakePainting.Click += new System.EventHandler(this.lblMakePainting_Click);
             // 
+            // lblBackColor
+            // 
+            this.lblBackColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBackColor.Location = new System.Drawing.Point(802, 309);
+            this.lblBackColor.Name = "lblBackColor";
+            this.lblBackColor.Size = new System.Drawing.Size(100, 23);
+            this.lblBackColor.TabIndex = 1;
+            this.lblBackColor.Text = "لون الخلفية";
+            this.lblBackColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBackColor.Click += new System.EventHandler(this.lblBackColor_Click);
+            // 
+            // lblLinesColor
+            // 
+            this.lblLinesColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLinesColor.Location = new System.Drawing.Point(802, 383);
+            this.lblLinesColor.Name = "lblLinesColor";
+            this.lblLinesColor.Size = new System.Drawing.Size(100, 23);
+            this.lblLinesColor.TabIndex = 1;
+            this.lblLinesColor.Text = "لون الخطوط";
+            this.lblLinesColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLinesColor.Click += new System.EventHandler(this.lblLinesColor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 559);
+            this.Controls.Add(this.lblLinesColor);
+            this.Controls.Add(this.lblBackColor);
             this.Controls.Add(this.lblMakePainting);
             this.Controls.Add(this.txtDistance);
             this.Controls.Add(this.label2);
@@ -124,6 +151,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDistance;
         private System.Windows.Forms.Label lblMakePainting;
+        private System.Windows.Forms.Label lblBackColor;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label lblLinesColor;
     }
 }
 

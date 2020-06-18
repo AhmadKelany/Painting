@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +20,17 @@ namespace Painting
         {
             InitializeComponent();
         }
-
+        public Color BackColor { get; set; } 
+        public Color LinesColor { get; set; } 
         private void lblMakePainting_Click(object sender, EventArgs e)
         {
             decimal radius = decimal.Parse(txtRadius.Text);
             decimal distance = decimal.Parse(txtDistance.Text);
 
-            Pen p = new Pen(Brushes.Goldenrod,1);
+            Pen p = new Pen(LinesColor,1);
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics g = Graphics.FromImage(bitmap);
-            g.FillRectangle(Brushes.White, 0, 0, pictureBox1.Width, pictureBox1.Height);
+            g.FillRectangle(new SolidBrush(BackColor), 0, 0, pictureBox1.Width, pictureBox1.Height);
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             g.InterpolationMode = InterpolationMode.High;
@@ -39,6 +42,28 @@ namespace Painting
                     g.DrawEllipse(p, w, h,  (int)radius,  (int)radius);
                 }
             }
+            string path = @$"d:\{DateTime.Now.ToString("yyyy-MM-dd hh-mm tt")}.jpeg";
+            bitmap.Save(path, ImageFormat.Jpeg);
+        }
+
+        private void lblBackColor_Click(object sender, EventArgs e)
+        {
+            var result = colorDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                BackColor = colorDialog1.Color;
+            }
+            lblBackColor.BackColor = BackColor;
+        }
+
+        private void lblLinesColor_Click(object sender, EventArgs e)
+        {
+            var result = colorDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                LinesColor = colorDialog1.Color;
+            }
+            lblLinesColor.BackColor = LinesColor;
         }
     }
 }
