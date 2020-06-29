@@ -35,13 +35,15 @@ namespace Painting
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             g.InterpolationMode = InterpolationMode.High;
             pictureBox1.Image = bitmap;
-            for (int w = 10; w < pictureBox1.Width -(int )radius- 10; w += (int)distance)
-            {
-                for (int h = 10; h < pictureBox1.Height-(int)radius - 10; h += (int)distance)
-                {
-                    g.DrawEllipse(p, w, h,  (int)radius,  (int)radius);
-                }
-            }
+
+            g.DrawPattern(new Point(bitmap.Width / 2, bitmap.Height / 2), p, 8, 1, 100, 200);
+            //for (int w = 10; w < pictureBox1.Width -(int )radius- 10; w += (int)distance)
+            //{
+            //    for (int h = 10; h < pictureBox1.Height-(int)radius - 10; h += (int)distance)
+            //    {
+            //        g.DrawEllipse(p, w, h,  (int)radius,  (int)radius);
+            //    }
+            //}
             string path = @$"d:\{DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss tt")}.jpeg";
             bitmap.Save(path, ImageFormat.Jpeg);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 
 namespace Painting
@@ -34,24 +35,60 @@ namespace Painting
         }
         public static Point DisplacePoint(Point point , Point centerPoint ,  int quarter)
         {
+            var vertical = centerPoint.Y - point.Y;
+            var horizontal = point.X - centerPoint.X;
+            int x = 0;
+            int y = 0;
 
+            switch (quarter)
+            {
+                case 2:
+                    x = centerPoint.X + horizontal;
+                    y = centerPoint.Y + vertical;
+                    break;
+                case 3:
+                    x = centerPoint.X - horizontal;
+                    y = centerPoint.Y + vertical;
+                    break;
+                case 4:
+                    x = centerPoint.X - horizontal;
+                    y = centerPoint.Y - vertical;
+                    break;
+                default:
+                    break;
+            }
+            return new Point(x, y);
         }
 
         public static List<Point> GetPoints(int diagonal , int axiesCount , Point centerPoint)
         {
-            var uniquePointsCount = (axiesCount / 2) - 1;
             var angles = GetAngles(axiesCount);
+            var result = new List<Point>();
 
-            // first quarter
+            result.Add(new Point(centerPoint.X, centerPoint.Y - diagonal));
+            foreach (var angle in angles)
+            {
+                var displacement = GetDisplacement(angle, diagonal);
+                result.Add(new Point(centerPoint.X + (int)displacement.Horizontal, centerPoint.Y - (int)displacement.Vertical));
+            }
+            result.Add(new Point(centerPoint.X + diagonal, centerPoint.Y));
 
+            var count = result.Count - 2;
+            DisplaceQuarter(centerPoint, result, count , 2);
+            result.Add(new Point(centerPoint.X, centerPoint.Y + diagonal));
+            DisplaceQuarter(centerPoint, result, count, 3);
+            result.Add(new Point(centerPoint.X - diagonal, centerPoint.Y));
+            DisplaceQuarter(centerPoint, result, count, 4);
 
-            // second quarter
+            return result;
+        }
 
-            // third quarter
-
-            // fourth quarter
-
-
+        private static void DisplaceQuarter(Point centerPoint, List<Point> result, int count , int quarter)
+        {
+            for (int i = 1; i <= count; i++)
+            {
+                result.Add(DisplacePoint(result[i], centerPoint, quarter));
+            }
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Painting.Tests
         {
             var angles = MathHelper.GetAngles(8);
             Assert.Equal(new List<decimal>() { 22.5m, 45m, 67.50m }, angles);
+
+            var ps = MathHelper.GetPoints(80, 16, new System.Drawing.Point(100, 100));
         }
     }
 }
