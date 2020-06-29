@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Painting", "Painting\Painting.csproj", "{366284BF-5BCC-4822-81E3-E9BB9D33484D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Painting", "Painting\Painting.csproj", "{366284BF-5BCC-4822-81E3-E9BB9D33484D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Painting.Tests", "Painting.Tests\Painting.Tests.csproj", "{3C8EF4E9-3FFE-4F40-8AC9-B843782D53DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{366284BF-5BCC-4822-81E3-E9BB9D33484D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{366284BF-5BCC-4822-81E3-E9BB9D33484D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{366284BF-5BCC-4822-81E3-E9BB9D33484D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C8EF4E9-3FFE-4F40-8AC9-B843782D53DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C8EF4E9-3FFE-4F40-8AC9-B843782D53DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C8EF4E9-3FFE-4F40-8AC9-B843782D53DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8EF4E9-3FFE-4F40-8AC9-B843782D53DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
