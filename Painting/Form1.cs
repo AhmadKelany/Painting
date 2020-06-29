@@ -28,15 +28,19 @@ namespace Painting
             decimal distance = decimal.Parse(txtDistance.Text);
 
             Pen p = new Pen(LinesColor,(int)numericUpDown1.Value);
-            Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap bitmap = new Bitmap(1980, 1024);
             Graphics g = Graphics.FromImage(bitmap);
-            g.FillRectangle(new SolidBrush(BackColor), 0, 0, pictureBox1.Width, pictureBox1.Height);
+            g.FillRectangle(new SolidBrush(BackColor), 0, 0,1980, 1024);
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             g.InterpolationMode = InterpolationMode.High;
-            pictureBox1.Image = bitmap;
+            pictureBox1.BackgroundImage = bitmap;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
 
-            g.DrawPattern(new Point(bitmap.Width / 2, bitmap.Height / 2), p,32, 2, 100, 300);
+
+            int d1 = int.Parse(txtRadius.Text);
+            int d2 = int.Parse(txtDistance.Text);
+            g.DrawPattern(new Point(bitmap.Width / 2, bitmap.Height / 2), p,32, 2, d1, d2);
             //for (int w = 10; w < pictureBox1.Width -(int )radius- 10; w += (int)distance)
             //{
             //    for (int h = 10; h < pictureBox1.Height-(int)radius - 10; h += (int)distance)
