@@ -85,9 +85,21 @@ namespace Painting
 
         private static void DisplaceQuarter(Point centerPoint, List<Point> result, int count , int quarter)
         {
-            for (int i = 1; i <= count; i++)
+            if (quarter == 3)
             {
-                result.Add(DisplacePoint(result[i], centerPoint, quarter));
+                for (int i = 1; i <= count; i++)
+                {
+                    result.Add(DisplacePoint(result[i], centerPoint, quarter));
+                }
+
+            }
+            else
+            {
+                for (int i = count; i >= 1; i--)
+                {
+                    result.Add(DisplacePoint(result[i], centerPoint, quarter));
+                }
+
             }
         }
     }
