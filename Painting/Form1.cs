@@ -20,7 +20,7 @@ namespace Painting
         {
             InitializeComponent();
         }
-        public Color BackColor { get; set; } 
+        public Color ImageBackColor { get; set; } 
         public Color LinesColor { get; set; } 
         private void lblMakePainting_Click(object sender, EventArgs e)
         {
@@ -28,9 +28,9 @@ namespace Painting
             decimal distance = decimal.Parse(txtDistance.Text);
 
             Pen p = new Pen(LinesColor,(int)numericUpDown1.Value);
-            Bitmap bitmap = new Bitmap(1980, 1024);
+            Bitmap bitmap = new Bitmap(1920, 1080);
             Graphics g = Graphics.FromImage(bitmap);
-            g.FillRectangle(new SolidBrush(BackColor), 0, 0,1980, 1024);
+            g.FillRectangle(new SolidBrush(ImageBackColor), 0, 0,1980, 1024);
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             g.InterpolationMode = InterpolationMode.High;
@@ -57,9 +57,9 @@ namespace Painting
             var result = colorDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
-                BackColor = colorDialog1.Color;
+                ImageBackColor = colorDialog1.Color;
             }
-            lblBackColor.BackColor = BackColor;
+            lblBackColor.BackColor = ImageBackColor;
         }
 
         private void lblLinesColor_Click(object sender, EventArgs e)
