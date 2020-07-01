@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Painting.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -27,6 +28,18 @@ namespace Painting
                 graphics.DrawLine(pen, headPoint, secondPoints[frontPointIndex]);
                 graphics.DrawLine(pen, headPoint, secondPoints[backPointIndex]);
             }
+        }
+
+        public static void DrawPattern(this Graphics graphics,
+                                       Point centerPoint,
+                                       PatternControl control)
+        {
+            graphics.DrawPattern(centerPoint,
+                new Pen(control.LinesColor, control.LineThickness),
+                control.AxiesCount,
+                control.Step,
+                control.Diagonal1,
+                control.Diagonal2);
         }
     }
 }

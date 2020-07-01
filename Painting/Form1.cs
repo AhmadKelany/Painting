@@ -38,16 +38,16 @@ namespace Painting
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
 
 
-            int d1 = int.Parse(txtRadius.Text);
-            int d2 = int.Parse(txtDistance.Text);
-            g.DrawPattern(new Point(bitmap.Width / 2, bitmap.Height / 2), p,32, 2, d1, d2);
-            //for (int w = 10; w < pictureBox1.Width -(int )radius- 10; w += (int)distance)
-            //{
-            //    for (int h = 10; h < pictureBox1.Height-(int)radius - 10; h += (int)distance)
-            //    {
-            //        g.DrawEllipse(p, w, h,  (int)radius,  (int)radius);
-            //    }
-            //}
+            //int d1 = int.Parse(txtRadius.Text);
+            //int d2 = int.Parse(txtDistance.Text);
+            //g.DrawPattern(new Point(bitmap.Width / 2, bitmap.Height / 2), p,32, 2, d1, d2);
+            for (int w = 10; w < pictureBox1.Width - (int)radius - 10; w += (int)distance)
+            {
+                for (int h = 10; h < pictureBox1.Height - (int)radius - 10; h += (int)distance)
+                {
+                    g.DrawEllipse(p, w, h, (int)radius, (int)radius);
+                }
+            }
             string path = @$"d:\{DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss tt")}.jpeg";
             bitmap.Save(path, ImageFormat.Jpeg);
         }
@@ -70,6 +70,12 @@ namespace Painting
                 LinesColor = colorDialog1.Color;
             }
             lblLinesColor.BackColor = LinesColor;
+        }
+
+        private void btnLines_Click(object sender, EventArgs e)
+        {
+            frmLines frm = new frmLines();
+            frm.Show();
         }
     }
 }

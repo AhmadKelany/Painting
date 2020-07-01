@@ -37,5 +37,48 @@ namespace Painting.UserControls
             this.AxiesCount = 8;
         }
 
+        private void txtD1_TextChanged(object sender, EventArgs e)
+        {
+            int d1 = 100;
+            int.TryParse(txtD1.Text,out d1);
+            this.Diagonal1 = d1;
+        }
+
+        private void txtD2_TextChanged(object sender, EventArgs e)
+        {
+            int d2 = 100;
+            int.TryParse(txtD2.Text, out d2);
+            this.Diagonal2 = d2;
+        }
+
+        private void cmbAxiesCount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbAxiesCount.SelectedIndex >= 0)
+            {
+                this.AxiesCount = Convert.ToInt32(cmbAxiesCount.Text);
+            }
+        }
+
+        private void txtStep_TextChanged(object sender, EventArgs e)
+        {
+            var s = 1;
+            int.TryParse(txtStep.Text, out s);
+            this.Step = s;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            this.LineThickness = (int)numericUpDown1.Value;
+        }
+
+        private void lblLinesColor_Click(object sender, EventArgs e)
+        {
+            var colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.LinesColor = colorDialog.Color;
+                lblLinesColor.BackColor = this.LinesColor;
+            }
+        }
     }
 }
