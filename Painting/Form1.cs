@@ -1,55 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Painting
 {
     public partial class Form1 : Form
     {
+        const int ImageWidth = 1920;
+        const int ImageHeight = 1080;
+        Bitmap bitmap;
         public Form1()
         {
             InitializeComponent();
+            bitmap = new Bitmap(ImageWidth, ImageHeight);
+            ImageBackColor = Color.White;
+            LinesColor = Color.Black;
+            lblBackColor.BackColor = Color.White;
+            lblLinesColor.BackColor = Color.Black;
+            lblBackColor.Paint += label_paint;
+            lblLinesColor.Paint += label_paint;
+            btnDraw.Click += BtnDraw_Click;
+            btnSave.Click += BtnSave_Click;
+
         }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var path = $@"{dialog.SelectedPath}\{DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss tt")}.jpeg";
+                bitmap.Save(path, ImageFormat.Jpeg);
+            }
+        }
+
+        private void BtnDraw_Click(object sender, EventArgs e)
+        {
+            DrawCarbet();
+        }
+
+        private void label_paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,((Label)sender).DisplayRectangle, Color.DarkGray, ButtonBorderStyle.Solid);
+        }
+
         public Color ImageBackColor { get; set; } 
         public Color LinesColor { get; set; } 
-        private void lblMakePainting_Click(object sender, EventArgs e)
+
+        private void DrawCarbet()
         {
             decimal radius = decimal.Parse(txtRadius.Text);
             decimal distance = decimal.Parse(txtDistance.Text);
 
-            Pen p = new Pen(LinesColor,(int)numericUpDown1.Value);
-            Bitmap bitmap = new Bitmap(1920, 1080);
-            Graphics g = Graphics.FromImage(bitmap);
-            g.FillRectangle(new SolidBrush(ImageBackColor), 0, 0,1980, 1024);
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
-            g.InterpolationMode = InterpolationMode.High;
+            Pen pen = new Pen(LinesColor, (int)numericUpDown1.Value);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            graphics.FillRectangle(new SolidBrush(ImageBackColor), 0, 0, ImageWidth, ImageHeight);
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+            graphics.InterpolationMode = InterpolationMode.High;
             pictureBox1.BackgroundImage = bitmap;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
 
 
-            //int d1 = int.Parse(txtRadius.Text);
-            //int d2 = int.Parse(txtDistance.Text);
-            //g.DrawPattern(new Point(bitmap.Width / 2, bitmap.Height / 2), p,32, 2, d1, d2);
-            for (int w = 10; w < pictureBox1.Width - (int)radius - 10; w += (int)distance)
+            for (int w = 10; w < ImageWidth - (int)radius - 10; w += (int)distance)
             {
-                for (int h = 10; h < pictureBox1.Height - (int)radius - 10; h += (int)distance)
+                for (int h = 10; h < ImageHeight - (int)radius - 10; h += (int)distance)
                 {
-                    g.DrawEllipse(p, w, h, (int)radius, (int)radius);
+                    graphics.DrawEllipse(pen, w, h, (int)radius, (int)radius);
                 }
             }
-            string path = @$"d:\{DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss tt")}.jpeg";
-            bitmap.Save(path, ImageFormat.Jpeg);
         }
 
         private void lblBackColor_Click(object sender, EventArgs e)
@@ -72,10 +94,5 @@ namespace Painting
             lblLinesColor.BackColor = LinesColor;
         }
 
-        private void btnLines_Click(object sender, EventArgs e)
-        {
-            frmLines frm = new frmLines();
-            frm.Show();
-        }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Painting.UserControls
@@ -19,6 +15,12 @@ namespace Painting.UserControls
         public PatternControl()
         {
             InitializeComponent();
+            btnRemove.Click += BtnRemove_Click;
+        }
+
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            Parent.Controls.Remove(this);
         }
 
         private void Control_Loaded(object sender, EventArgs e)
