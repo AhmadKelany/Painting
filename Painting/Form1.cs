@@ -15,7 +15,6 @@ namespace Painting
         public Form1()
         {
             InitializeComponent();
-            bitmap = new Bitmap(ImageWidth, ImageHeight);
             ImageBackColor = Color.White;
             LinesColor = Color.Black;
             lblBackColor.BackColor = Color.White;
@@ -54,6 +53,7 @@ namespace Painting
         {
             decimal radius = decimal.Parse(txtRadius.Text);
             decimal distance = decimal.Parse(txtDistance.Text);
+            bitmap = new Bitmap(ImageWidth, ImageHeight);
 
             Pen pen = new Pen(LinesColor, (int)numericUpDown1.Value);
             Graphics graphics = Graphics.FromImage(bitmap);
